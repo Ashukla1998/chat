@@ -1,0 +1,18 @@
+
+<h1>Product List</h1>
+<%= stylesheet_link_tag 'products', media: 'all' %>
+<div class="products-list">
+  <% @products.each do |product| %>
+    <div class="product">
+      <h3><%= product.name %></h3>
+      <p class="price">Price: <%= number_to_currency(product.price) %></p>
+      <p class="description">Description: <%= product.description %></p>
+      <%= image_tag product.image, class: "product-image" if product.image.attached? %>
+      <%= link_to 'Add to Cart', add_to_cart_path(product_id: product.id, quantity: 1), method: :post, class: 'btn btn-primary' %>
+  </div>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "New Product", new_product_path, class: "btn btn-primary" %>
+
